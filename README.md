@@ -29,4 +29,4 @@ A: Please [open an issue](https://github.com/warnellw/ZoomBlock/issues) with a d
 
 ## License
 
-Zoom Block is licensed under [GPLv3](license.txt).
+Zoom Block is licensed under [GPLv3](LICENSE).
