@@ -18,14 +18,18 @@ A: No. Zoom Block respects its users' privacy. No network requests of any kind a
 **Q: Can Zoom Block "lock" a custom zoom level?**\
 A: The browser extension API does not offer an elegant way to accomplish this. The best option is to change the browser's default zoom level. Chrome's default zoom settings can be found in Settings -> Appearance -> Page Zoom. Zoom Block will then prevent modifications to the set level.
 
-**Q: Why does Zoom Block's icon sometimes turn grey?**\
-A: Some browsers do not allow extensions to modify certain pages (typically internal or settings pages). Zoom Block is therefore unable to prevent zooming on those pages, and the icon will turn grey to indicate such a situation.
+**Q: Why does Zoom Block's icon sometimes turn gray?**\
+A: Some browsers do not allow extensions to modify certain pages (typically internal or settings pages). Zoom Block is therefore unable to prevent zooming on those pages, and the icon will turn gray to indicate such a situation.
 
 **Q: Does Zoom Block work in other browsers?**\
 A: Microsoft Edge and Mozilla Firefox have not yet properly implemented the browser extension zoom API. Once the issues are fixed, Zoom Block will be published to each repective store.
 
 **Q: I found a bug! Where can I submit a report?**\
 A: Please [open an issue](https://github.com/warnellw/Zoom-Block/issues) with a detailed description. Pull requests welcome!
+
+## Acknowledgements
+
+Many thanks to [Emily Brozovic](http://emilybrozovic.com/) for generously providing Zoom Block's icons.
 
 ## License
 
