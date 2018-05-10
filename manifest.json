@@ -5,7 +5,7 @@
     "version": "1.0.0",
     "description":
         "Disable zooming by default. Re-enable zooming on a per-tab basis by clicking the Zoom Block icon.",
-    "homepage_url": "https://github.com/warnellw/ZoomBlock",
+    "homepage_url": "https://github.com/warnellw/Zoom-Block",
     "icons": {
         "16": "icons/red16.png",
         "48": "icons/red48.png",

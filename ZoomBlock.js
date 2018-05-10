@@ -2,7 +2,7 @@
 
     Zoom Block - A browser extension that disables zooming.
     Copyright (C) 2018 Wesley Warnell
-    https://github.com/warnellw/ZoomBlock
+    https://github.com/warnellw/Zoom-Block
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by

@@ -25,7 +25,7 @@ A: Some browsers do not allow extensions to modify certain pages (typically inte
 A: Microsoft Edge and Mozilla Firefox have not yet properly implemented the browser extension zoom API. Once the issues are fixed, Zoom Block will be published to each repective store.
 
 **Q: I found a bug! Where can I submit a report?**\
-A: Please [open an issue](https://github.com/warnellw/ZoomBlock/issues) with a detailed description. Pull requests welcome!
+A: Please [open an issue](https://github.com/warnellw/Zoom-Block/issues) with a detailed description. Pull requests welcome!
 
 ## License
 
