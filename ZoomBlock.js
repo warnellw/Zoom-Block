@@ -71,26 +71,17 @@
       this.enabledTabs.delete(tabId)
     }
 
-    zoomConstructor (mode) {
-      return {
-        mode: mode === false ? 'disabled' : 'automatic',
-        scope: 'per-tab'
-      }
-    }
-
     setPopup (tabId, error) {
       this.browser.browserAction.setPopup({
         tabId: tabId, popup: error ? this.popup : ''
       })
     }
 
-    updateIcon (tabId, enabled) {
-      let color =
-        enabled === false ? 'red' : enabled === true ? 'green' : 'black'
-      this.browser.browserAction.setIcon({
-        path: this.images.get(color),
-        tabId: tabId
-      })
+    zoomConstructor (mode) {
+      return {
+        mode: mode === false ? 'disabled' : 'automatic',
+        scope: 'per-tab'
+      }
     }
 
     init () {
@@ -105,15 +96,12 @@
       })
     }
 
-    iconClick (Tab) {
-      let enabled = !this.getEnabled(Tab.id)
-      this.setZoomSettings(Tab.id, enabled, error => {
-        if (enabled && !error) {
-          this.setEnabled(Tab.id)
-        } else if (!error) {
-          this.removeEnabled(Tab.id)
-        }
-        this.updateIcon(Tab.id, error ? undefined : !!enabled)
+    updateIcon (tabId, enabled) {
+      let color =
+        enabled === false ? 'red' : enabled === true ? 'green' : 'black'
+      this.browser.browserAction.setIcon({
+        path: this.images.get(color),
+        tabId: tabId
       })
     }
 
@@ -126,6 +114,18 @@
           callback(this.browser.runtime.lastError || undefined)
         }
       )
+    }
+
+    iconClick (Tab) {
+      let enabled = !this.getEnabled(Tab.id)
+      this.setZoomSettings(Tab.id, enabled, error => {
+        if (enabled && !error) {
+          this.setEnabled(Tab.id)
+        } else if (!error) {
+          this.removeEnabled(Tab.id)
+        }
+        this.updateIcon(Tab.id, error ? undefined : !!enabled)
+      })
     }
 
     tabUpdated (tabId, changeInfo) {
