@@ -28,6 +28,8 @@
 
       this.enabledTabs = new Set()
 
+      this.popup = this.browser.runtime.getURL('popup.html')
+
       this.images = new Map()
         .set('red', {
           '19': this.browser.runtime.getURL('icons/red19.png'),
@@ -76,6 +78,12 @@
       }
     }
 
+    setPopup (tabId, error) {
+      this.browser.browserAction.setPopup({
+        tabId: tabId, popup: error ? this.popup : ''
+      })
+    }
+
     updateIcon (tabId, enabled) {
       let color =
         enabled === false ? 'red' : enabled === true ? 'green' : 'black'
@@ -114,6 +122,7 @@
         tabId,
         this.zoomConstructor(zoomSetting),
         () => {
+          this.setPopup(tabId, !!this.browser.runtime.lastError)
           callback(this.browser.runtime.lastError || undefined)
         }
       )
