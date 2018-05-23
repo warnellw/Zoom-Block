@@ -73,7 +73,7 @@
 
     setPopup (tabId, error) {
       this.browser.browserAction.setPopup({
-        tabId: tabId, popup: error ? this.popup : ''
+        tabId, popup: error ? this.popup : ''
       })
     }
 
@@ -92,16 +92,18 @@
 
     store (Tab) {
       this.setZoomSettings(Tab.id, false, error => {
-        if (error) this.updateIcon(Tab.id, undefined)
+        if (error) this.updateIcon(Tab.id)
       })
     }
 
     updateIcon (tabId, enabled) {
-      let color =
-        enabled === false ? 'red' : enabled === true ? 'green' : 'black'
       this.browser.browserAction.setIcon({
-        path: this.images.get(color),
-        tabId: tabId
+        path: this.images.get(
+          enabled === false ? 'red'
+            : enabled === true ? 'green'
+              : 'black'
+        ),
+        tabId
       })
     }
 
@@ -110,27 +112,28 @@
         tabId,
         this.zoomConstructor(zoomSetting),
         () => {
-          this.setPopup(tabId, !!this.browser.runtime.lastError)
-          callback(this.browser.runtime.lastError || undefined)
+          const error = !!this.browser.runtime.lastError
+          this.setPopup(tabId, error)
+          callback(error)
         }
       )
     }
 
     iconClick (Tab) {
-      let enabled = !this.getEnabled(Tab.id)
+      const enabled = !this.getEnabled(Tab.id)
       this.setZoomSettings(Tab.id, enabled, error => {
         if (enabled && !error) {
           this.setEnabled(Tab.id)
         } else if (!error) {
           this.removeEnabled(Tab.id)
         }
-        this.updateIcon(Tab.id, error ? undefined : !!enabled)
+        this.updateIcon(Tab.id, error ? undefined : enabled)
       })
     }
 
     tabUpdated (tabId, changeInfo) {
       if (changeInfo.status !== 'loading') return
-      let enabled = this.getEnabled(tabId)
+      const enabled = this.getEnabled(tabId)
       this.setZoomSettings(tabId, enabled, error => {
         // https://bugs.chromium.org/p/chromium/issues/detail?id=30113
         if (error || enabled) {
