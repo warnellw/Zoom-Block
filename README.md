@@ -1,6 +1,6 @@
 <h1 align="center">
     <sub>
-        <img src="icons/red38.png" height="38" width="38" alt="Zoom Block Icon">
+        <img src="icons/red32.png" height="32" width="32" alt="Zoom Block Icon">
     </sub>
     Zoom Block
 </h1>

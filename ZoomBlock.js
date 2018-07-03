@@ -32,16 +32,19 @@
 
       this.images = new Map()
         .set('red', {
-          '19': this.browser.runtime.getURL('icons/red19.png'),
-          '38': this.browser.runtime.getURL('icons/red38.png')
+          '16': this.browser.runtime.getURL('icons/red16.png'),
+          '24': this.browser.runtime.getURL('icons/red24.png'),
+          '32': this.browser.runtime.getURL('icons/red32.png')
         })
         .set('green', {
-          '19': this.browser.runtime.getURL('icons/green19.png'),
-          '38': this.browser.runtime.getURL('icons/green38.png')
+          '16': this.browser.runtime.getURL('icons/green16.png'),
+          '24': this.browser.runtime.getURL('icons/green24.png'),
+          '32': this.browser.runtime.getURL('icons/green32.png')
         })
-        .set('black', {
-          '19': this.browser.runtime.getURL('icons/black19.png'),
-          '38': this.browser.runtime.getURL('icons/black38.png')
+        .set('gray', {
+          '16': this.browser.runtime.getURL('icons/gray16.png'),
+          '24': this.browser.runtime.getURL('icons/gray24.png'),
+          '32': this.browser.runtime.getURL('icons/gray32.png')
         })
     }
 
@@ -101,7 +104,7 @@
         path: this.images.get(
           enabled === false ? 'red'
             : enabled === true ? 'green'
-              : 'black'
+              : 'gray'
         ),
         tabId
       })

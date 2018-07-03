@@ -1,25 +1,26 @@
 {
-    "manifest_version": 2,
-    "author": "Wesley Warnell",
-    "name": "Zoom Block",
-    "version": "1.1.0",
-    "description":
-        "Disable zooming by default. Re-enable zooming on a per-tab basis by clicking the Zoom Block icon.",
-    "homepage_url": "https://github.com/warnellw/Zoom-Block",
-    "icons": {
-        "16": "icons/red16.png",
-        "48": "icons/red48.png",
-        "128": "icons/red128.png"
+  "manifest_version": 2,
+  "author": "Wesley Warnell",
+  "name": "Zoom Block",
+  "version": "1.1.0",
+  "description":
+    "Disable zooming by default. Re-enable zooming on a per-tab basis by clicking the Zoom Block icon.",
+  "homepage_url": "https://github.com/warnellw/Zoom-Block",
+  "icons": {
+    "16": "icons/red16.png",
+    "48": "icons/red48.png",
+    "128": "icons/red128.png"
+  },
+  "browser_action": {
+    "default_icon": {
+      "16": "icons/red16.png",
+      "24": "icons/red24.png",
+      "32": "icons/red32.png"
     },
-    "browser_action": {
-        "default_icon": {
-            "19": "icons/red19.png",
-            "38": "icons/red38.png"
-        },
-        "default_title": "Zoom Block"
-    },
-    "background": {
-        "scripts": ["ZoomBlock.js"],
-        "persistent": true
-    }
+    "default_title": "Zoom Block"
+  },
+  "background": {
+    "scripts": ["ZoomBlock.js"],
+    "persistent": true
+  }
 }
