@@ -147,4 +147,4 @@
   }
 
   new ZoomBlock(api).addListeners()
-})(window.browser || window.chrome)
+})(window.chrome)
