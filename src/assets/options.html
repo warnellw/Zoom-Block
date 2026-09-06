@@ -1,0 +1,300 @@
+<!--
+
+  Zoom Block - A browser extension that disables zooming.
+  Copyright (C) 2024 Wesley Warnell
+  https://github.com/warnellw/Zoom-Block
+
+  This program is free software: you can redistribute it and/or modify
+  it under the terms of the GNU General Public License as published by
+  the Free Software Foundation, either version 3 of the License, or
+  (at your option) any later version.
+
+  This program is distributed in the hope that it will be useful,
+  but WITHOUT ANY WARRANTY; without even the implied warranty of
+  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  GNU General Public License for more details.
+
+  You should have received a copy of the GNU General Public License
+  along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
+-->
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Zoom Block Options</title>
+    <style>
+      :root {
+        color-scheme: light dark;
+        --accent: #0f766e;
+        --border: #c8cdd3;
+        --surface: #f6f8fa;
+        --text-muted: #56616f;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      [hidden] {
+        display: none !important;
+      }
+
+      body {
+        color: CanvasText;
+        font:
+          14px/1.45 system-ui,
+          -apple-system,
+          BlinkMacSystemFont,
+          "Segoe UI",
+          sans-serif;
+        margin: 0;
+      }
+
+      main {
+        margin: 0 auto;
+        max-width: 880px;
+        padding: 32px;
+      }
+
+      header {
+        align-items: center;
+        border-bottom: 1px solid var(--border);
+        display: flex;
+        gap: 16px;
+        justify-content: space-between;
+        padding-bottom: 20px;
+      }
+
+      h1,
+      h2 {
+        margin: 0;
+      }
+
+      h1 {
+        font-size: 26px;
+      }
+
+      h2 {
+        font-size: 18px;
+      }
+
+      section {
+        padding: 24px 0;
+      }
+
+      .status {
+        color: var(--accent);
+        font-weight: 650;
+        min-width: 56px;
+        text-align: right;
+      }
+
+      .mode-grid {
+        display: grid;
+        gap: 12px;
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+        margin-top: 16px;
+      }
+
+      .section-heading {
+        align-items: flex-start;
+        display: flex;
+        gap: 16px;
+        justify-content: space-between;
+      }
+
+      .mode-settings {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 20px;
+        justify-content: flex-end;
+      }
+
+      label.mode {
+        border: 1px solid var(--border);
+        border-radius: 8px;
+        cursor: pointer;
+        display: grid;
+        gap: 6px;
+        grid-template-columns: auto 1fr;
+        padding: 14px;
+      }
+
+      label.mode:has(input:checked) {
+        border-color: var(--accent);
+        box-shadow: inset 0 0 0 1px var(--accent);
+      }
+
+      label.mode span,
+      .setting-row span {
+        font-weight: 700;
+      }
+
+      label.mode small,
+      .setting-row small {
+        color: var(--text-muted);
+        display: block;
+      }
+
+      label.mode small {
+        grid-column: 2;
+      }
+
+      .setting-row {
+        align-items: flex-start;
+        display: flex;
+        gap: 10px;
+        margin-top: 16px;
+      }
+
+      .setting-row.compact {
+        margin-top: 0;
+        max-width: 280px;
+      }
+
+      .lists {
+        display: grid;
+        gap: 28px;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      }
+
+      .list-editor {
+        background: var(--surface);
+        border: 1px solid var(--border);
+        border-radius: 6px;
+        color: CanvasText;
+        display: block;
+        font-family:
+          ui-monospace, SFMono-Regular, Consolas, "Liberation Mono", monospace;
+        font-size: 13px;
+        line-height: 1.55;
+        margin-top: 14px;
+        min-height: 260px;
+        padding: 10px 12px;
+        resize: vertical;
+        width: 100%;
+      }
+
+      .list-editor:focus {
+        border-color: var(--accent);
+        outline: none;
+      }
+
+      @media (prefers-color-scheme: dark) {
+        :root {
+          --border: #39414c;
+          --surface: #171b20;
+          --text-muted: #9aa6b2;
+        }
+      }
+
+      @media (max-width: 640px) {
+        main {
+          padding: 20px;
+        }
+
+        header {
+          align-items: flex-start;
+          flex-direction: column;
+        }
+
+        .section-heading {
+          flex-direction: column;
+        }
+
+        .mode-settings {
+          justify-content: flex-start;
+        }
+
+        .status {
+          min-height: 20px;
+          text-align: left;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <header>
+        <h1>Zoom Block Options</h1>
+        <div class="status" id="status" aria-live="polite"></div>
+      </header>
+
+      <section aria-labelledby="mode-title">
+        <div class="section-heading">
+          <h2 id="mode-title">Mode</h2>
+          <div class="mode-settings">
+            <label class="setting-row compact">
+              <input id="show-context-menu" type="checkbox" />
+              <span>
+                Show context menu item
+                <small>Add or remove sites from the active list.</small>
+              </span>
+            </label>
+            <label class="setting-row compact">
+              <input id="use-separate-lists" type="checkbox" />
+              <span>
+                Use separate lists
+                <small>Keep allow list and block list entries separate.</small>
+              </span>
+            </label>
+          </div>
+        </div>
+        <div class="mode-grid">
+          <label class="mode">
+            <input type="radio" name="mode" value="all" />
+            <span>All sites</span>
+            <small>Zoom is disabled everywhere by default.</small>
+          </label>
+          <label class="mode">
+            <input type="radio" name="mode" value="allowlist" />
+            <span>Allow list</span>
+            <small>Matching sites keep browser zoom enabled.</small>
+          </label>
+          <label class="mode">
+            <input type="radio" name="mode" value="blocklist" />
+            <span>Block list</span>
+            <small>Only matching sites have zoom disabled.</small>
+          </label>
+        </div>
+      </section>
+
+      <section id="site-lists-section" aria-labelledby="lists-title" hidden>
+        <h2 id="lists-title">Single list</h2>
+
+        <div id="shared-list-panel" hidden>
+          <textarea
+            id="sharedList-editor"
+            class="list-editor"
+            spellcheck="false"
+            placeholder="# one pattern per line&#10;example.com&#10;*.example.com&#10;*zoom*"
+          ></textarea>
+        </div>
+
+        <div class="lists" id="split-lists-panel" hidden>
+          <div id="allowlist-panel" hidden>
+            <textarea
+              id="allowlist-editor"
+              class="list-editor"
+              spellcheck="false"
+              placeholder="# one pattern per line&#10;example.com&#10;*.example.com&#10;*zoom*"
+            ></textarea>
+          </div>
+
+          <div id="blocklist-panel" hidden>
+            <textarea
+              id="blocklist-editor"
+              class="list-editor"
+              spellcheck="false"
+              placeholder="# one pattern per line&#10;example.com&#10;*.example.com&#10;*zoom*"
+            ></textarea>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <script type="module" src="../options.js"></script>
+  </body>
+</html>

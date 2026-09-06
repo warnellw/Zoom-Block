@@ -3,7 +3,7 @@
   "author": "Wesley Warnell",
   "name": "Zoom Block",
   "version": "2.1.0",
-  "description": "Disable zooming by default. Re-enable zooming on a per-tab basis by clicking the Zoom Block icon.",
+  "description": "Disable zooming by default. Optionally use allow or block lists.",
   "homepage_url": "https://github.com/warnellw/Zoom-Block",
   "icons": {
     "16": "assets/icons/red16.png",
@@ -22,5 +22,9 @@
     "service_worker": "service-worker.js",
     "type": "module"
   },
-  "permissions": ["storage"]
+  "options_ui": {
+    "page": "assets/options.html",
+    "open_in_tab": true
+  },
+  "permissions": ["contextMenus", "storage", "tabs"]
 }

@@ -5,12 +5,22 @@
     Zoom Block
 </h1>
 
-Zoom Block is a browser extension that disables zooming by default preventing unwanted or accidental zooming. Zooming can be re-enable on a per-tab basis by clicking the Zoom Block icon.
+Zoom Block is a browser extension that disables zooming by default preventing unwanted or accidental zooming. Zooming can be re-enabled on a per-tab basis by clicking the Zoom Block icon.
+
+## Site list modes
+
+Zoom Block keeps the original all-sites behavior by default. The Options page can optionally switch the extension to list-based behavior:
+
+- All sites: zooming is disabled everywhere by default.
+- Allow list: matching sites keep browser zoom enabled.
+- Block list: only matching sites have zoom disabled.
+
+List entries are edited one pattern per line. Blank lines and comments starting with `#` are ignored when saved. Entries can be host patterns such as `example.com`, wildcard hosts such as `*.example.com`, or broader wildcard patterns such as `*zoom*`. The optional context menu item can add or remove the current site from the list used by the selected mode.
 
 ## FAQ
 
 **Q: What permissions does Zoom Block require?**\
-A: Zoom Block does not require any permissions. Through careful handling of errors, Zoom Block is able to operate without access to any sensitive information.
+A: Zoom Block does not request host permissions or page-content access. It uses the `storage` permission to save settings and per-tab overrides, `tabs` to apply list rules to tab URLs, and `contextMenus` for the optional add/remove site menu item.
 
 **Q: Does Zoom Block use analytics?**\
 A: No. Zoom Block respects its users' privacy. No network requests of any kind are ever made.
